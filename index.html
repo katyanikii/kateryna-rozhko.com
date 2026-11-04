@@ -10,7 +10,7 @@
 <meta property="og:url" content="https://kateryna-rozhko.com/">
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://kateryna-rozhko.com/">
-<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
 <title>Kateryna Rozhko</title>
 <meta name="description" content="Kateryna Rozhko — artiste peintre à Bruxelles. Série Présence, huile sur toile, 2025–2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -171,9 +171,11 @@ nav.links a[aria-current="page"]{color:var(--ink);text-decoration:underline;text
 .btn.solid{background:var(--ink);color:var(--bg)}
 .btn:hover{border-color:var(--accent)}
 .shop{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:28px 20px}
+@media (max-width:600px){.shop{grid-template-columns:minmax(0,1fr);max-width:300px;margin-inline:auto;gap:44px}}
 .item{display:grid;gap:10px;align-content:start}
-.item .frame{background:var(--wall);border:1px solid var(--line);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;padding:14%}
-.item .frame img{max-height:100%;width:auto;box-shadow:2px 6px 14px -6px var(--shadow),0 1px 2px var(--shadow);cursor:zoom-in}
+.item .frame{position:relative;background:var(--wall);border:1px solid var(--line);aspect-ratio:1/1;width:100%;overflow:hidden}
+.item .frame .in{position:absolute;inset:13%;display:flex;align-items:center;justify-content:center}
+.item .frame img{max-width:100%;max-height:100%;width:auto;height:auto;box-shadow:2px 6px 14px -6px var(--shadow),0 1px 2px var(--shadow);cursor:zoom-in}
 .item h3{font-family:var(--display);font-weight:400;font-size:26px;margin:4px 0 0;line-height:1.1}
 .item .meta{font-family:var(--mono);font-size:12px;color:var(--muted)}
 .item .row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:10px}
@@ -191,6 +193,27 @@ nav.links a[aria-current="page"]{color:var(--ink);text-decoration:underline;text
 .ex .where{color:var(--muted);font-size:14px}
 .ex p{margin:0;max-width:52ch}
 @media (max-width:820px){.info{grid-template-columns:minmax(0,1fr)}.ex article{grid-template-columns:minmax(0,1fr);gap:8px}}
+
+/* hero slideshow: close-up details, full width */
+.slides{position:relative;height:min(84svh,920px);min-height:420px;overflow:hidden;background:#111}
+.slides figure{position:absolute;inset:0;margin:0;opacity:0;transition:opacity 1.4s ease}
+.slides figure.on{opacity:1}
+.slides img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 7s linear}
+.slides figure.on img{transform:scale(1)}
+.slides::after{content:"";position:absolute;inset:auto 0 0 0;height:45%;background:linear-gradient(to top,rgba(10,12,12,.62),rgba(10,12,12,0))}
+.slides .over{position:absolute;inset:auto 0 0 0;z-index:2;color:#f3f2ee}
+.slides .over .wrap{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;padding-block:0 calc(28px + env(safe-area-inset-bottom,0px))}
+.slides .who{font-family:var(--display);font-weight:300;font-size:clamp(44px,8vw,104px);line-height:.95;margin:0}
+.slides .role{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-top:12px;opacity:.85}
+.slides .cap{font-family:var(--mono);font-size:12px;opacity:.85;display:flex;gap:14px;align-items:center}
+.dots{display:flex;gap:6px}
+.dots button{all:unset;cursor:pointer;width:22px;height:2px;background:rgba(243,242,238,.4)}
+.dots button[aria-current="true"]{background:#f3f2ee}
+.dots button:focus-visible{outline:2px solid #f3f2ee;outline-offset:4px}
+@media (prefers-reduced-motion:reduce){.slides img{transform:none!important}}
+
+
+html,body{overflow-x:clip}
 </style>
 
 </head>
@@ -216,6 +239,12 @@ nav.links a[aria-current="page"]{color:var(--ink);text-decoration:underline;text
 <main>
 <!-- ACCUEIL -->
 <div class="view" data-view="accueil">
+  <div class="slides" id="slides" aria-roledescription="carousel" aria-label="Détails des œuvres">
+    <div class="over"><div class="wrap">
+      <div><p class="who">Kateryna Rozhko</p><div class="role"><span class="fr">Peintre · Bruxelles</span><span class="en">Painter · Brussels</span></div></div>
+      <div class="cap"><span id="slide-cap"></span><span class="dots" id="dots"></span></div>
+    </div></div>
+  </div>
   <div class="wrap hero">
     <div class="eyebrow"><span class="fr">Série · huile sur toile · 2025–2026</span><span class="en">Series · oil on canvas · 2025–2026</span></div>
     <h1>Présence</h1>
@@ -237,12 +266,12 @@ nav.links a[aria-current="page"]{color:var(--ink);text-decoration:underline;text
   <section class="wrap" style="padding-block:64px 24px">
     <div class="lead">
       <div class="fr">
-        <p>Des lieux familiers, vus sous un angle inhabituel : un empilement de balcons, une vitre, la surface de l’eau. Le cadrage retire tout repère — sol, horizon, passants — jusqu’à ce que ces fragments du quotidien cessent de ressembler à ce que nous connaissons.</p>
-        <p>Personne n’y apparaît. Il ne reste que des traces : un cendrier oublié sur un balcon, un vêtement suspendu, une chaussure derrière une vitre, le reflet de quelque chose hors du cadre. Des signes discrets qu’une présence a habité ces lieux, ou vient de les quitter.</p>
+        <p>Des hôtels et la surface de l’eau à Majorque, une serre et une fenêtre à Bruxelles. Des lieux traversés, regardés sous un angle inhabituel : d’en bas, de trop près, à travers une vitre. Le cadrage retire tout repère — sol, horizon, passants — et ces fragments de ville deviennent presque abstraits.</p>
+        <p>Personne n’y apparaît. Il ne reste que des traces : un cendrier oublié sur un balcon, un vêtement suspendu, une chaussure posée sur le rebord d’une fenêtre, le reflet de quelque chose hors du cadre. Des signes discrets qu’une présence a habité ces lieux, ou vient de les quitter.</p>
       </div>
       <div class="en">
-        <p>Familiar places seen from an unusual angle: a stack of balconies, a pane of glass, the surface of water. The framing removes every reference point — ground, horizon, passers-by — until these fragments of everyday life stop looking like what we know.</p>
-        <p>No one appears. Only traces remain: an ashtray left on a balcony, a garment hanging out, a shoe behind a window, the reflection of something outside the frame. Quiet signs that someone has lived in these places, or has just left them.</p>
+        <p>Hotels and the surface of water in Mallorca, a greenhouse and a window in Brussels. Places passed through, seen from an unusual angle: from below, too close, through glass. The framing removes every reference point — ground, horizon, passers-by — and these fragments of the city become almost abstract.</p>
+        <p>No one appears. Only traces remain: an ashtray left on a balcony, a garment hanging out, a shoe left on a window ledge, the reflection of something outside the frame. Quiet signs that someone has lived in these places, or has just left them.</p>
       </div>
     </div>
     <div class="cta">
@@ -321,7 +350,7 @@ nav.links a[aria-current="page"]{color:var(--ink);text-decoration:underline;text
   <section class="wrap" style="padding-top:40px">
     <div class="shop" id="shop"></div>
     <div class="info">
-      <div><h3><span class="fr">Acheter</span><span class="en">How to buy</span></h3><p><span class="fr">Écrivez-moi avec le titre de l’œuvre. Je vous réponds avec le prix, des photos supplémentaires et les modalités.</span><span class="en">Write to me with the title of the work. I’ll reply with the price, extra photos and the details.</span></p></div>
+      <div><h3><span class="fr">Acheter</span><span class="en">How to buy</span></h3><p><span class="fr">Écrivez-moi avec le titre de l’œuvre. Je vous réponds avec des photos supplémentaires et les modalités de paiement et de livraison.</span><span class="en">Write to me with the title of the work. I’ll reply with extra photos and the payment and delivery details.</span></p></div>
       <div><h3><span class="fr">Voir l’œuvre</span><span class="en">See it in person</span></h3><p><span class="fr">Visite possible à Bruxelles, sur rendez-vous.</span><span class="en">Viewings in Brussels by appointment.</span></p></div>
       <div><h3><span class="fr">Livraison</span><span class="en">Delivery</span></h3><p><span class="fr">Remise en main propre à Bruxelles ou envoi à convenir. Œuvres signées, vendues sans cadre.</span><span class="en">Hand delivery in Brussels or shipping by arrangement. Signed works, sold unframed.</span></p></div>
     </div>
@@ -432,20 +461,20 @@ nav.links a[aria-current="page"]{color:var(--ink);text-decoration:underline;text
   // h × w in cm, as in the portfolio
   var PRESENCE = [
     {id:1,t:"Présence nº1",y:2025,tech:"oil",h:50,w:40,img:"img/presence-1.jpg",det:"img/detail-1.jpg",
-     fr:"Des balcons ronds empilés. Sur l’un d’eux, un cendrier oublié.",en:"Round balconies stacked one above another. On one of them, a forgotten ashtray.",
+     fr:"Les balcons ronds d’un hôtel à Majorque, empilés les uns sur les autres. Sur l’un d’eux, un cendrier oublié.",en:"The round balconies of a hotel in Mallorca, stacked one above another. On one of them, a forgotten ashtray.",
      dfr:"un cendrier oublié sur le balcon",den:"an ashtray left on the balcony"},
     {id:2,t:"Présence nº2",y:2025,tech:"oil",h:70,w:50,img:"img/presence-2.jpg",det:"img/detail-2.jpg",
-     fr:"Le béton face à un ciel qui bouge, vu d’en bas.",en:"Concrete against a moving sky, seen from below.",
+     fr:"Un hôtel de Majorque vu d’en bas, face à un ciel qui bouge. Un vêtement suspendu à un balcon.",en:"A hotel in Mallorca seen from below, against a moving sky. A garment hanging from a balcony.",
      dfr:"un vêtement suspendu",den:"a garment hanging out"},
     {id:3,t:"Présence nº3",y:2026,tech:"oil",h:40,w:30,img:"img/presence-3.jpg",det:"img/detail-3.jpg",
-     fr:"Une serre où le verre, les reflets et les plantes se confondent.",en:"A greenhouse where glass, reflections and plants blur into one.",
-     dfr:"reflets et transparences",den:"reflections and transparency"},
+     fr:"Les Serres royales de Laeken, vues à travers le verre : reflets, structures et plantes se confondent.",en:"The Royal Greenhouses of Laeken, seen through the glass: reflections, structure and plants blur into one.",
+     dfr:"les Serres royales, à travers le verre",den:"the Royal Greenhouses, through the glass"},
     {id:4,t:"Présence nº4",y:2025,tech:"oil",h:45,w:35,img:"img/presence-4.jpg",det:"img/detail-4.jpg",
-     fr:"La surface de l’eau, juste après le passage de quelqu’un.",en:"The surface of the water, just after someone swam through.",
+     fr:"La surface de l’eau à Majorque, juste après le passage de quelqu’un.",en:"The surface of the water in Mallorca, just after someone swam through.",
      dfr:"la surface de l’eau",den:"the water surface"},
     {id:5,t:"Présence nº5",y:2026,tech:"oil",h:40,w:40,img:"img/presence-5.jpg",det:"img/detail-5.jpg",
-     fr:"Un mur sombre couvert de coulures, une fenêtre, et une chaussure oubliée derrière la vitre.",en:"A dark wall covered in drips, a window, and a shoe left behind the glass.",
-     dfr:"une chaussure derrière la vitre",den:"a shoe behind the glass"}
+     fr:"Une fenêtre dans la cour du Musée d’Art Spontané, à Bruxelles. Un mur sombre couvert de coulures, et une chaussure oubliée sur le rebord.",en:"A window in the courtyard of the Musée d’Art Spontané in Brussels. A dark wall covered in drips, and a shoe left on the window ledge.",
+     dfr:"une chaussure sur le rebord de la fenêtre",den:"a shoe on the window ledge"}
   ];
   var OTHERS = [
     {t:"Sans titre",y:2026,tech:"mix",h:58,w:78,img:"img/sans-titre-1.jpg",det:"img/detail-st.jpg",
@@ -463,6 +492,8 @@ nav.links a[aria-current="page"]{color:var(--ink);text-decoration:underline;text
     {img:"img/int-sans-titre.jpg",fr:"Sans titre",en:"Sans titre"}
   ];
 
+  var PRICE={"Présence nº1":550,"Présence nº2":700,"Présence nº3":400,"Présence nº4":500,"Présence nº5":500,"Koï":700,"Pool":350,"Sans titre":700};
+  function pr(t){ return PRICE[t] ? PRICE[t].toLocaleString("fr-BE")+" €" : ""; }
   var lang = "fr";
   try{ var s = localStorage.getItem("kr-lang"); if(s==="en"||s==="fr") lang = s; }catch(e){}
   if(lang==="fr" && !/^fr/i.test(navigator.language||"") && /^en/i.test(navigator.language||"")){ /* keep FR as the site's first language */ }
@@ -503,7 +534,7 @@ nav.links a[aria-current="page"]{color:var(--ink);text-decoration:underline;text
       '<dt>'+bi(L.fr.tech,L.en.tech)+'</dt><dd>'+bi(L.fr[o.tech],L.en[o.tech])+'</dd>'+
       '<dt>'+bi(L.fr.size,L.en.size)+'</dt><dd>'+size(o)+'</dd></dl>'+
       '<p class="note">'+bi(o.fr,o.en)+'</p>'+
-      '<span class="avail">'+bi(L.fr.avail,L.en.avail)+'</span>';
+      '<span class="avail">'+bi("Disponible","Available")+' · '+pr(o.t)+'</span>';
     cart.innerHTML = html;
     if(o.det){
       var di = add(o.det, {fr:o.t+" — "+L.fr.detail+" : "+o.dfr, en:o.t+" — "+L.en.detail+": "+o.den});
@@ -539,9 +570,9 @@ nav.links a[aria-current="page"]{color:var(--ink);text-decoration:underline;text
   PRESENCE.concat(OTHERS).forEach(function(o){
     var c = capOf(o), i = add(o.img, c);
     var d = el("article",{class:"item"});
-    d.innerHTML = '<div class="frame"><img src="'+o.img+'" alt="'+o.t+'" loading="lazy" data-i="'+i+'" tabindex="0"></div>'+
+    d.innerHTML = '<div class="frame"><div class="in"><img src="'+o.img+'" alt="'+o.t+'" loading="lazy" data-i="'+i+'" tabindex="0"></div></div>'+
       '<h3>'+o.t+'</h3><div class="meta">'+o.y+' · '+bi(L.fr[o.tech],L.en[o.tech])+' · '+size(o)+'</div>'+
-      '<div class="row"><span class="avail">'+bi("Disponible","Available")+'</span><span class="price">'+bi("Prix sur demande","Price on request")+'</span></div>'+
+      '<div class="row"><span class="avail">'+bi("Disponible","Available")+'</span><span class="price">'+pr(o.t)+'</span></div>'+
       '<button type="button" class="ask" data-t="'+o.t+'">'+bi("Demander cette œuvre","Ask about this work")+'</button>';
     shop.appendChild(d);
   });
@@ -566,6 +597,28 @@ nav.links a[aria-current="page"]{color:var(--ink);text-decoration:underline;text
   }
   window.addEventListener("hashchange", route);
 
+  // hero slideshow
+  var HERO=[["hero-4","Présence nº4"],["hero-5","Présence nº5"],["hero-1","Présence nº1"],["hero-3","Présence nº3"],["hero-2","Présence nº2"],["hero-st","Sans titre"]];
+  var sl=document.getElementById("slides"), dots=document.getElementById("dots"), capEl=document.getElementById("slide-cap"), si=0, st=null;
+  var portrait=window.matchMedia("(max-aspect-ratio: 4/5)");
+  var reduce=window.matchMedia("(prefers-reduced-motion: reduce)");
+  HERO.forEach(function(h,k){
+    var f=el("figure",{"aria-hidden":k?"true":"false"});
+    var im=el("img",{alt:h[1]+" — détail",loading:k?"lazy":"eager","data-l":"img/"+h[0]+"-l.jpg","data-p":"img/"+h[0]+"-p.jpg"});
+    f.appendChild(im); sl.insertBefore(f, sl.querySelector(".over"));
+    var b=el("button",{type:"button","aria-label":h[1]}); b.addEventListener("click",function(){ go(k); restart(); }); dots.appendChild(b);
+  });
+  function srcs(){ sl.querySelectorAll("img").forEach(function(im){ var v=portrait.matches?im.getAttribute("data-p"):im.getAttribute("data-l"); if(im.getAttribute("src")!==v) im.setAttribute("src",v); }); }
+  function go(k){
+    si=(k+HERO.length)%HERO.length;
+    sl.querySelectorAll("figure").forEach(function(f,j){ f.classList.toggle("on",j===si); f.setAttribute("aria-hidden",j===si?"false":"true"); });
+    dots.querySelectorAll("button").forEach(function(b,j){ b.setAttribute("aria-current",j===si?"true":"false"); });
+    capEl.textContent=HERO[si][1]+(lang==="fr"?" — détail":" — detail");
+  }
+  function restart(){ clearInterval(st); if(!reduce.matches) st=setInterval(function(){ go(si+1); },5500); }
+  srcs(); go(0); restart();
+  if(portrait.addEventListener) portrait.addEventListener("change",srcs);
+
   // language
   function setLang(l){
     lang = l; document.documentElement.setAttribute("data-lang", l); document.documentElement.setAttribute("lang", l);
@@ -573,6 +626,7 @@ nav.links a[aria-current="page"]{color:var(--ink);text-decoration:underline;text
     document.getElementById("btn-en").setAttribute("aria-pressed", l==="en");
     try{ localStorage.setItem("kr-lang", l); }catch(e){}
     if(!lb.hidden) show(cur);
+    if(capEl) go(si);
   }
   document.querySelectorAll(".lang button").forEach(function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
 
