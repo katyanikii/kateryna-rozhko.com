@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="fr" data-lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 fill=%22%231d2122%22/%3E%3Ctext x=%2232%22 y=%2243%22 font-family=%22Georgia,serif%22 font-size=%2230%22 fill=%22%23f1f1ee%22 text-anchor=%22middle%22%3EKR%3C/text%3E%3C/svg%3E">
+<meta property="og:title" content="Kateryna Rozhko — Présence">
+<meta property="og:description" content="Artiste peintre à Bruxelles. Série Présence, huile sur toile, 2025–2026.">
+<meta property="og:image" content="https://kateryna-rozhko.com/img/presence-1.jpg">
+<meta property="og:url" content="https://kateryna-rozhko.com/">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://kateryna-rozhko.com/">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}</style>
+<title>Kateryna Rozhko</title>
+<meta name="description" content="Kateryna Rozhko — artiste peintre à Bruxelles. Série Présence, huile sur toile, 2025–2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300&family=Karla:wght@400;500&family=DM+Mono:wght@400&display=swap">
+<style>
+/* Layout: a quiet gallery wall. Works hang to scale on one axis; each work gets a museum-style label (cartel). */
+:root{
+  --bg:#f1f1ee;        /* cool plaster */
+  --wall:#e8e8e3;      /* recessed wall band */
+  --ink:#1d2122;
+  --muted:#656b6a;
+  --line:#cdcdc6;
+  --accent:#2c5a5e;    /* deep water, from Présence nº4 */
+  --shadow:rgba(20,24,24,.22);
+  --display:"Cormorant","Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --body:"Karla","Helvetica Neue",Arial,sans-serif;
+  --mono:"DM Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --maxw:1180px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141716;--wall:#1b1f1e;--ink:#e8e7e2;--muted:#9ba19f;--line:#323836;--accent:#8ec0c2;--shadow:rgba(0,0,0,.55);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141716;--wall:#1b1f1e;--ink:#e8e7e2;--muted:#9ba19f;--line:#323836;--accent:#8ec0c2;--shadow:rgba(0,0,0,.55);color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* language switch */
+html[data-lang="fr"] .en, html[data-lang="en"] .fr{display:none!important}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:20px;padding-block:14px;flex-wrap:wrap}
+.name{font-family:var(--display);font-size:22px;font-weight:400;letter-spacing:.01em;text-decoration:none;margin-right:auto}
+nav.links{display:flex;gap:18px;flex-wrap:wrap;font-size:14px}
+nav.links a{text-decoration:none;color:var(--muted)}
+nav.links a:hover{color:var(--ink)}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-family:var(--mono);font-size:12px}
+.lang button{all:unset;cursor:pointer;padding:4px 10px;color:var(--muted)}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.lang button:focus-visible,a:focus-visible,.work-img:focus-visible,.lb button:focus-visible,.copy:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* hero */
+.hero{padding-block:56px 24px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-family:var(--display);font-weight:300;font-size:clamp(64px,13vw,168px);line-height:.9;letter-spacing:-.01em;margin:10px 0 0}
+.hero .sub{display:flex;flex-wrap:wrap;gap:6px 24px;margin-top:14px;color:var(--muted);font-size:15px}
+
+/* the wall, to scale */
+.wallband{background:var(--wall);border-block:1px solid var(--line);margin-top:28px}
+.wallband .wrap{padding-block:56px 22px}
+.hang{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:clamp(150px,34vw,420px)}
+.hang::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:1px dashed var(--line)}
+.hang figure{margin:0;position:relative}
+.hang img{width:100%;height:100%;object-fit:cover;box-shadow:2px 6px 14px -6px var(--shadow),0 1px 2px var(--shadow);cursor:zoom-in;transition:transform .25s ease}
+.hang img:hover{transform:translateY(-3px)}
+.hang .n{position:absolute;left:0;top:calc(100% + 8px);font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
+.scale{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-top:40px;font-family:var(--mono);font-size:11px;color:var(--muted);flex-wrap:wrap}
+.bar{display:flex;align-items:center;gap:8px}
+.bar i{display:block;height:6px;border:1px solid var(--muted);border-top:0}
+
+/* sections */
+section{padding-block:80px 0}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;margin-bottom:36px}
+h2{font-family:var(--display);font-weight:300;font-size:clamp(38px,6vw,64px);line-height:1;margin:0;text-wrap:balance}
+.lead{max-width:62ch;font-size:18px;line-height:1.65}
+.lead p{margin:0 0 1em}
+
+/* works */
+.works{display:grid;gap:72px}
+.work{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:end}
+.work:nth-child(even) .work-media{order:2}
+.work-media{display:flex;justify-content:center;align-items:flex-end;background:var(--wall);padding:clamp(24px,5vw,64px);border:1px solid var(--line)}
+.work-img{cursor:zoom-in;box-shadow:2px 8px 18px -8px var(--shadow),0 1px 2px var(--shadow)}
+.cartel{display:grid;gap:14px;padding-bottom:6px;min-width:0}
+.cartel h3{font-family:var(--display);font-weight:400;font-size:clamp(28px,3.4vw,40px);line-height:1.05;margin:0}
+.cartel dl{display:grid;grid-template-columns:auto 1fr;gap:4px 18px;margin:0;font-family:var(--mono);font-size:13px}
+.cartel dt{color:var(--muted)}
+.cartel dd{margin:0}
+.cartel .note{color:var(--muted);max-width:44ch;margin:0}
+.avail{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.04em}
+.avail::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-right:8px;vertical-align:1px}
+.thumb{display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:center;margin-top:6px}
+.thumb img{width:96px;height:96px;object-fit:cover;cursor:zoom-in}
+.thumb span{font-size:14px;color:var(--muted)}
+
+/* details */
+.details{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.details figure{margin:0;display:grid;gap:8px}
+.details img{aspect-ratio:3/4;object-fit:cover;width:100%;cursor:zoom-in}
+.details figcaption{font-size:13px;color:var(--muted);line-height:1.4}
+.details figcaption b{display:block;font-family:var(--mono);font-weight:400;font-size:11px;color:var(--ink);letter-spacing:.03em}
+
+/* interiors */
+.interiors{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.interiors figure{margin:0;display:grid;gap:8px}
+.interiors img{aspect-ratio:4/5;object-fit:cover;width:100%;cursor:zoom-in}
+.interiors figcaption{font-family:var(--mono);font-size:11px;color:var(--muted)}
+
+/* about */
+.about{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px)}
+.cv h3{font-family:var(--mono);font-weight:400;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 12px}
+.cv ol{list-style:none;margin:0 0 36px;padding:0;display:grid;gap:14px}
+.cv li{display:grid;grid-template-columns:92px minmax(0,1fr);gap:14px;border-top:1px solid var(--line);padding-top:12px}
+.cv .y{font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums}
+.cv .t{font-size:15px}
+.cv .t small{display:block;color:var(--muted);font-size:13px}
+
+/* contact */
+.contact{border-top:1px solid var(--line);margin-top:96px}
+.contact .wrap{padding-block:64px 72px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:end}
+.contact h2{font-size:clamp(44px,8vw,96px)}
+.lines{display:grid;gap:18px}
+.line{display:grid;gap:4px}
+.line .k{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.line .v{font-size:clamp(18px,2.4vw,24px);display:flex;flex-wrap:wrap;gap:10px;align-items:center;user-select:all;word-break:break-all}
+.copy{all:unset;cursor:pointer;font-family:var(--mono);font-size:11px;border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--muted);user-select:none}
+.copy:hover{color:var(--ink);border-color:var(--ink)}
+footer{font-family:var(--mono);font-size:11px;color:var(--muted)}
+footer .wrap{padding-block:0 40px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:50;background:color-mix(in srgb,var(--bg) 96%,transparent);display:grid;grid-template-rows:minmax(0,1fr) auto;padding:calc(16px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.lb img{max-height:100%;max-width:100%;margin:auto;object-fit:contain;box-shadow:0 10px 30px -10px var(--shadow)}
+.lb .bar2{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:12px;font-family:var(--mono);font-size:12px}
+.lb .cap{color:var(--ink);min-width:0}
+.lb .ctrl{display:flex;gap:8px}
+.lb button{all:unset;cursor:pointer;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-family:var(--mono);font-size:12px}
+.lb button:hover{border-color:var(--ink)}
+
+@media (max-width:820px){
+  .work,.about,.contact .wrap{grid-template-columns:minmax(0,1fr)}
+  .work:nth-child(even) .work-media{order:0}
+  .details{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .interiors{grid-template-columns:repeat(2,minmax(0,1fr))}
+  nav.links{order:3;width:100%;gap:14px}
+}
+@media (max-width:480px){
+  .details{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hang .n{display:none}
+  .cv li{grid-template-columns:minmax(0,1fr);gap:2px}
+}
+
+[hidden]{display:none!important}
+/* views (tabs) */
+.view[hidden]{display:none!important}
+nav.links a[aria-current="page"]{color:var(--ink);text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}
+.page-head{padding-block:56px 8px}
+.page-head h1{font-family:var(--display);font-weight:300;font-size:clamp(52px,9vw,112px);line-height:.95;margin:8px 0 0}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-block;text-decoration:none;border:1px solid var(--ink);padding:10px 20px;font-size:14px;border-radius:999px}
+.btn.solid{background:var(--ink);color:var(--bg)}
+.btn:hover{border-color:var(--accent)}
+.shop{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:28px 20px}
+.item{display:grid;gap:10px;align-content:start}
+.item .frame{background:var(--wall);border:1px solid var(--line);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;padding:14%}
+.item .frame img{max-height:100%;width:auto;box-shadow:2px 6px 14px -6px var(--shadow),0 1px 2px var(--shadow);cursor:zoom-in}
+.item h3{font-family:var(--display);font-weight:400;font-size:26px;margin:4px 0 0;line-height:1.1}
+.item .meta{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.item .row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:10px}
+.item .price{font-family:var(--mono);font-size:13px}
+.ask{all:unset;cursor:pointer;font-size:13px;border-bottom:1px solid var(--ink)}
+.ask:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.info{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:56px;border-top:1px solid var(--line);padding-top:24px}
+.info h3{font-family:var(--mono);font-weight:400;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.info p{margin:0;font-size:15px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);font-family:var(--mono);font-size:12px;padding:10px 16px;border-radius:999px;z-index:60}
+.ex{display:grid;gap:0}
+.ex article{display:grid;grid-template-columns:120px minmax(0,1fr) minmax(0,1fr);gap:24px;border-top:1px solid var(--line);padding-block:28px}
+.ex .y{font-family:var(--mono);font-size:13px}
+.ex h3{font-family:var(--display);font-weight:400;font-size:clamp(26px,3vw,34px);line-height:1.1;margin:0 0 6px}
+.ex .where{color:var(--muted);font-size:14px}
+.ex p{margin:0;max-width:52ch}
+@media (max-width:820px){.info{grid-template-columns:minmax(0,1fr)}.ex article{grid-template-columns:minmax(0,1fr);gap:8px}}
+</style>
+
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="name" href="#accueil">Kateryna Rozhko</a>
+    <nav class="links" aria-label="Sections">
+      <a href="#oeuvres"><span class="fr">Œuvres</span><span class="en">Works</span></a>
+      <a href="#expositions"><span class="fr">Expositions</span><span class="en">Exhibitions</span></a>
+      <a href="#boutique"><span class="fr">Boutique</span><span class="en">Shop</span></a>
+      <a href="#ateliers"><span class="fr">Ateliers</span><span class="en">Workshops</span></a>
+      <a href="#apropos"><span class="fr">À propos</span><span class="en">About</span></a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Langue / Language">
+      <button type="button" id="btn-fr" data-set="fr" aria-pressed="true">FR</button>
+      <button type="button" id="btn-en" data-set="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ACCUEIL -->
+<div class="view" data-view="accueil">
+  <div class="wrap hero">
+    <div class="eyebrow"><span class="fr">Série · huile sur toile · 2025–2026</span><span class="en">Series · oil on canvas · 2025–2026</span></div>
+    <h1>Présence</h1>
+    <div class="sub">
+      <span class="fr">Peintures de Kateryna Rozhko, Bruxelles</span><span class="en">Paintings by Kateryna Rozhko, Brussels</span>
+      <span class="fr">Cinq toiles, cinq traces de quelqu’un qui vient de partir</span><span class="en">Five paintings, five traces of someone who has just left</span>
+    </div>
+  </div>
+  <div class="wallband">
+    <div class="wrap">
+      <div class="hang" id="hang" aria-label="Présence nº1–5"></div>
+      <div class="scale">
+        <span class="fr">Accrochage à l’échelle · centre des œuvres à 145 cm du sol</span>
+        <span class="en">Hung to scale · centre line 145 cm from the floor</span>
+        <span class="bar"><i id="bar10"></i>10 cm</span>
+      </div>
+    </div>
+  </div>
+  <section class="wrap" style="padding-block:64px 24px">
+    <div class="lead">
+      <div class="fr">
+        <p>Des lieux familiers, vus sous un angle inhabituel : un empilement de balcons, une vitre, la surface de l’eau. Le cadrage retire tout repère — sol, horizon, passants — jusqu’à ce que ces fragments du quotidien cessent de ressembler à ce que nous connaissons.</p>
+        <p>Personne n’y apparaît. Il ne reste que des traces : un cendrier oublié sur un balcon, un vêtement suspendu, une chaussure derrière une vitre, le reflet de quelque chose hors du cadre. Des signes discrets qu’une présence a habité ces lieux, ou vient de les quitter.</p>
+      </div>
+      <div class="en">
+        <p>Familiar places seen from an unusual angle: a stack of balconies, a pane of glass, the surface of water. The framing removes every reference point — ground, horizon, passers-by — until these fragments of everyday life stop looking like what we know.</p>
+        <p>No one appears. Only traces remain: an ashtray left on a balcony, a garment hanging out, a shoe behind a window, the reflection of something outside the frame. Quiet signs that someone has lived in these places, or has just left them.</p>
+      </div>
+    </div>
+    <div class="cta">
+      <a class="btn solid" href="#oeuvres"><span class="fr">Voir les œuvres</span><span class="en">See the works</span></a>
+      <a class="btn" href="#boutique"><span class="fr">Œuvres disponibles</span><span class="en">Available works</span></a>
+    </div>
+  </section>
+</div>
+
+<!-- OEUVRES -->
+<div class="view" data-view="oeuvres" hidden>
+  <div class="wrap page-head">
+    <div class="eyebrow"><span class="fr">Peintures 2021–2026</span><span class="en">Paintings 2021–2026</span></div>
+    <h1><span class="fr">Œuvres</span><span class="en">Works</span></h1>
+  </div>
+  <section class="wrap" style="padding-top:40px">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="fr">Série · 2025–2026</span><span class="en">Series · 2025–2026</span></div>
+      <h2>Présence</h2>
+    </div>
+    <div class="works" id="works"></div>
+  </section>
+  <section class="wrap" aria-labelledby="traces-h">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="fr">Détails</span><span class="en">Details</span></div>
+      <h2 id="traces-h"><span class="fr">Les traces</span><span class="en">The traces</span></h2>
+    </div>
+    <div class="details" id="details"></div>
+  </section>
+  <section class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="fr">Hors série</span><span class="en">Outside the series</span></div>
+      <h2><span class="fr">Autres œuvres</span><span class="en">Other works</span></h2>
+    </div>
+    <div class="lead">
+      <p class="fr">Le même regard porté sur le quotidien et une recherche plus libre de la texture, de la couleur et de la forme. La dernière toile ouvre une direction nouvelle : une peinture abstraite où, parfois, un objet apparaît.</p>
+      <p class="en">The same eye on everyday life, and a freer search for texture, colour and form. The latest painting opens a new direction: abstract painting in which, sometimes, an object appears.</p>
+    </div>
+    <div class="works" id="others" style="margin-top:56px"></div>
+  </section>
+</div>
+
+<!-- EXPOSITIONS -->
+<div class="view" data-view="expositions" hidden>
+  <div class="wrap page-head">
+    <div class="eyebrow"><span class="fr">Expositions collectives</span><span class="en">Group exhibitions</span></div>
+    <h1><span class="fr">Expositions</span><span class="en">Exhibitions</span></h1>
+  </div>
+  <section class="wrap" style="padding-top:40px">
+    <div class="ex">
+      <article>
+        <span class="y">2026–2027</span>
+        <div><h3><span class="fr">Exposition collective</span><span class="en">Group exhibition</span></h3><div class="where">Arts &amp; Publics, <span class="fr">Bruxelles · juillet 2026 – juillet 2027</span><span class="en">Brussels · July 2026 – July 2027</span></div></div>
+        <p><span class="fr">Exposition en cours. Visite sur rendez-vous : écrivez-moi.</span><span class="en">Currently on view. Visits by appointment: write to me.</span></p>
+      </article>
+      <article>
+        <span class="y">2026</span>
+        <div><h3><span class="fr">Œuvre collective avec Fedasil</span><span class="en">Collective work with Fedasil</span></h3><div class="where">Musée d’Art Spontané, <span class="fr">Bruxelles · vernissage le 25 août 2026</span><span class="en">Brussels · opening 25 August 2026</span></div></div>
+        <p><span class="fr">Une œuvre créée avec des mineurs non accompagnés, présentée pendant trois jours.</span><span class="en">A work created with unaccompanied minors, shown for three days.</span></p>
+      </article>
+      <article>
+        <span class="y">2026</span>
+        <div><h3>« Cycles #1 »</h3><div class="where">Musée d’Art Spontané, <span class="fr">Bruxelles · juin – octobre 2026</span><span class="en">Brussels · June – October 2026</span></div></div>
+        <p><span class="fr">Exposition collective de trois artistes.</span><span class="en">Group exhibition of three artists.</span></p>
+      </article>
+    </div>
+  </section>
+</div>
+
+<!-- BOUTIQUE -->
+<div class="view" data-view="boutique" hidden>
+  <div class="wrap page-head">
+    <div class="eyebrow"><span class="fr">Œuvres originales disponibles</span><span class="en">Original works available</span></div>
+    <h1><span class="fr">Boutique</span><span class="en">Shop</span></h1>
+  </div>
+  <section class="wrap" style="padding-top:40px">
+    <div class="shop" id="shop"></div>
+    <div class="info">
+      <div><h3><span class="fr">Acheter</span><span class="en">How to buy</span></h3><p><span class="fr">Écrivez-moi avec le titre de l’œuvre. Je vous réponds avec le prix, des photos supplémentaires et les modalités.</span><span class="en">Write to me with the title of the work. I’ll reply with the price, extra photos and the details.</span></p></div>
+      <div><h3><span class="fr">Voir l’œuvre</span><span class="en">See it in person</span></h3><p><span class="fr">Visite possible à Bruxelles, sur rendez-vous.</span><span class="en">Viewings in Brussels by appointment.</span></p></div>
+      <div><h3><span class="fr">Livraison</span><span class="en">Delivery</span></h3><p><span class="fr">Remise en main propre à Bruxelles ou envoi à convenir. Œuvres signées, vendues sans cadre.</span><span class="en">Hand delivery in Brussels or shipping by arrangement. Signed works, sold unframed.</span></p></div>
+    </div>
+  </section>
+  <section class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Visualisations</div>
+      <h2><span class="fr">Dans un intérieur</span><span class="en">In a home</span></h2>
+    </div>
+    <div class="interiors" id="interiors"></div>
+    <p class="eyebrow" style="margin-top:14px;text-transform:none;letter-spacing:0"><span class="fr">Montages numériques à l’échelle, pour donner une idée des dimensions réelles.</span><span class="en">Digital mock-ups to scale, to give a sense of the real dimensions.</span></p>
+  </section>
+</div>
+
+<!-- ATELIERS -->
+<div class="view" data-view="ateliers" hidden>
+  <div class="wrap page-head">
+    <div class="eyebrow"><span class="fr">Médiation et création collective</span><span class="en">Mediation and collective creation</span></div>
+    <h1><span class="fr">Ateliers</span><span class="en">Workshops</span></h1>
+  </div>
+  <section class="wrap" style="padding-top:40px">
+    <div class="about">
+      <div class="lead">
+        <p class="fr">J’anime des ateliers de dessin et de peinture pour tous les publics : enfants, adultes, groupes mixtes. On part d’un objet ordinaire ou d’une texture, et on apprend à le regarder autrement. Aucune expérience n’est nécessaire.</p>
+        <p class="en">I lead drawing and painting workshops for all audiences: children, adults, mixed groups. We start from an ordinary object or a texture and learn to look at it differently. No experience needed.</p>
+        <p class="fr">Pour une école, une association, un musée ou un événement : écrivez-moi pour construire un atelier sur mesure.</p>
+        <p class="en">For a school, an association, a museum or an event: write to me and we’ll shape a workshop together.</p>
+        <div class="cta"><a class="btn solid" href="#contact"><span class="fr">Proposer un atelier</span><span class="en">Book a workshop</span></a></div>
+      </div>
+      <div class="cv">
+        <h3><span class="fr">Ateliers récents</span><span class="en">Recent workshops</span></h3>
+        <ol>
+          <li><span class="y">2026</span><span class="t"><span class="fr">Créa Solo, Arts &amp; Publics : quatre ateliers de dessin abstrait</span><span class="en">Créa Solo, Arts &amp; Publics: four abstract drawing workshops</span><small><span class="fr">Musée d’Art Spontané · 15 et 22 avril, 12 et 19 août 2026</span><span class="en">Musée d’Art Spontané · 15 and 22 April, 12 and 19 August 2026</span></small></span></li>
+          <li><span class="y">2026</span><span class="t"><span class="fr">Atelier de création collective avec Fedasil</span><span class="en">Collective creation workshop with Fedasil</span><small><span class="fr">Musée d’Art Spontané · 20 août 2026</span><span class="en">Musée d’Art Spontané · 20 August 2026</span></small></span></li>
+        </ol>
+        <h3><span class="fr">Langues des ateliers</span><span class="en">Workshop languages</span></h3>
+        <p style="margin:0"><span class="fr">Français, anglais, ukrainien, russe</span><span class="en">French, English, Ukrainian, Russian</span></p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- A PROPOS -->
+<div class="view" data-view="apropos" hidden>
+  <div class="wrap page-head">
+    <div class="eyebrow"><span class="fr">Artiste peintre · Bruxelles</span><span class="en">Painter · Brussels</span></div>
+    <h1>Kateryna Rozhko</h1>
+  </div>
+  <section class="wrap" style="padding-top:40px">
+    <div class="about">
+      <div class="lead">
+        <div class="fr">
+          <p>Née en 1990 en Ukraine, Kateryna Rozhko est une artiste peintre autodidacte. Elle peint depuis l’enfance et vit et travaille à Bruxelles depuis 2022.</p>
+          <p>Elle perçoit le monde comme un ensemble de textures, de formes et de couleurs où, parfois, des objets apparaissent. Sa peinture part de fragments du quotidien — façades, vitres, surfaces d’eau — qu’elle photographie, isole et recadre jusqu’à ce qu’ils deviennent étranges.</p>
+          <p>Elle travaille à l’huile, à l’acrylique et en techniques mixtes, et aime les projets menés avec d’autres artistes et d’autres disciplines.</p>
+        </div>
+        <div class="en">
+          <p>Born in 1990 in Ukraine, Kateryna Rozhko is a self-taught painter. She has painted since childhood and has lived and worked in Brussels since 2022.</p>
+          <p>She sees the world as a set of textures, shapes and colours in which, sometimes, objects appear. Her paintings start from fragments of everyday life — façades, windows, water surfaces — which she photographs, isolates and reframes until they become strange.</p>
+          <p>She works in oil, acrylic and mixed media, and enjoys projects made with other artists and other disciplines.</p>
+        </div>
+      </div>
+      <div class="cv">
+        <h3><span class="fr">Parcours</span><span class="en">Background</span></h3>
+        <ol>
+          <li><span class="y">2025–26</span><span class="t"><span class="fr">Porteuse de projet / artiste, Arts &amp; Publics</span><span class="en">Project lead / artist, Arts &amp; Publics</span><small>Musée d’Art Spontané, <span class="fr">Bruxelles</span><span class="en">Brussels</span></small></span></li>
+          <li><span class="y">2014–22</span><span class="t"><span class="fr">Artiste peintre indépendante</span><span class="en">Independent painter</span><small><span class="fr">Ukraine · commandes et œuvres personnelles</span><span class="en">Ukraine · commissions and personal work</span></small></span></li>
+        </ol>
+        <h3><span class="fr">Formation</span><span class="en">Training</span></h3>
+        <ol>
+          <li><span class="y">—</span><span class="t"><span class="fr">Autodidacte · cours de peinture à l’huile et de photographie</span><span class="en">Self-taught · oil painting and photography courses</span></span></li>
+        </ol>
+        <div class="cta" style="margin-top:0"><a class="btn" href="#expositions"><span class="fr">Expositions</span><span class="en">Exhibitions</span></a></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CONTACT -->
+<div class="view" data-view="contact" hidden>
+  <section class="contact" style="margin-top:0;border-top:0">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow"><span class="fr">Acquisitions, expositions, ateliers</span><span class="en">Acquisitions, exhibitions, workshops</span></div>
+        <h2>Contact</h2>
+        <p style="color:var(--muted);max-width:44ch;margin-top:14px"><span class="fr">Je réponds en français, en anglais, en ukrainien et en russe.</span><span class="en">I reply in French, English, Ukrainian and Russian.</span></p>
+      </div>
+      <div class="lines">
+        <div class="line"><span class="k">E-mail</span><span class="v"><span id="mail">katya.niki1@gmail.com</span><button type="button" class="copy" id="copy-mail"><span class="fr">Copier</span><span class="en">Copy</span></button></span></div>
+        <div class="line"><span class="k">Instagram</span><span class="v"><a href="https://www.instagram.com/katyanikii.art/" target="_blank" rel="noopener">@katyanikii.art</a></span></div>
+        <div class="line"><span class="k"><span class="fr">Atelier</span><span class="en">Studio</span></span><span class="v" style="user-select:text">Bruxelles · Brussels</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+</main>
+<footer><div class="wrap" style="padding-top:40px"><span>© 2026 Kateryna Rozhko</span><span>Bruxelles · Brussels</span></div></footer>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Image">
+  <img id="lb-img" alt="">
+  <div class="bar2"><span class="cap" id="lb-cap"></span><span class="ctrl"><button type="button" id="lb-prev" aria-label="Précédent">←</button><button type="button" id="lb-next" aria-label="Suivant">→</button><button type="button" id="lb-close">✕</button></span></div>
+</div>
+
+<script>
+(function(){
+  var L = {fr:{oil:"Huile sur toile",acr:"Acrylique sur toile",mix:"Technique mixte sur toile (acrylique, collage)",year:"Année",tech:"Technique",size:"Dimensions",avail:"Disponible · prix sur demande",detail:"Détail"},
+           en:{oil:"Oil on canvas",acr:"Acrylic on canvas",mix:"Mixed media on canvas (acrylic, collage)",year:"Year",tech:"Medium",size:"Size",avail:"Available · price on request",detail:"Detail"}};
+  // h × w in cm, as in the portfolio
+  var PRESENCE = [
+    {id:1,t:"Présence nº1",y:2025,tech:"oil",h:50,w:40,img:"img/presence-1.jpg",det:"img/detail-1.jpg",
+     fr:"Des balcons ronds empilés. Sur l’un d’eux, un cendrier oublié.",en:"Round balconies stacked one above another. On one of them, a forgotten ashtray.",
+     dfr:"un cendrier oublié sur le balcon",den:"an ashtray left on the balcony"},
+    {id:2,t:"Présence nº2",y:2025,tech:"oil",h:70,w:50,img:"img/presence-2.jpg",det:"img/detail-2.jpg",
+     fr:"Le béton face à un ciel qui bouge, vu d’en bas.",en:"Concrete against a moving sky, seen from below.",
+     dfr:"un vêtement suspendu",den:"a garment hanging out"},
+    {id:3,t:"Présence nº3",y:2026,tech:"oil",h:40,w:30,img:"img/presence-3.jpg",det:"img/detail-3.jpg",
+     fr:"Une serre où le verre, les reflets et les plantes se confondent.",en:"A greenhouse where glass, reflections and plants blur into one.",
+     dfr:"reflets et transparences",den:"reflections and transparency"},
+    {id:4,t:"Présence nº4",y:2025,tech:"oil",h:45,w:35,img:"img/presence-4.jpg",det:"img/detail-4.jpg",
+     fr:"La surface de l’eau, juste après le passage de quelqu’un.",en:"The surface of the water, just after someone swam through.",
+     dfr:"la surface de l’eau",den:"the water surface"},
+    {id:5,t:"Présence nº5",y:2026,tech:"oil",h:40,w:40,img:"img/presence-5.jpg",det:"img/detail-5.jpg",
+     fr:"Un mur sombre couvert de coulures, une fenêtre, et une chaussure oubliée derrière la vitre.",en:"A dark wall covered in drips, a window, and a shoe left behind the glass.",
+     dfr:"une chaussure derrière la vitre",den:"a shoe behind the glass"}
+  ];
+  var OTHERS = [
+    {t:"Sans titre",y:2026,tech:"mix",h:58,w:78,img:"img/sans-titre-1.jpg",det:"img/detail-st.jpg",
+     fr:"Couches de peinture, traits de pastel et éléments collés : un petit carré violet apparaît dans la matière.",en:"Layers of paint, pastel marks and collaged pieces: a small violet square surfaces in the texture.",
+     dfr:"couleur et matière",den:"colour and texture"},
+    {t:"Koï",y:2021,tech:"oil",h:70,w:50,img:"img/koi.jpg",
+     fr:"Des carpes koï à travers la surface mouvante de l’eau.",en:"Koi carp seen through the moving surface of the water."},
+    {t:"Pool",y:2024,tech:"acr",h:40,w:30,img:"img/pool.jpg",
+     fr:"Une échelle, l’eau immobile, le bord du bassin. La scène attend quelqu’un.",en:"A ladder, still water, the edge of the pool. The scene is waiting for someone."}
+  ];
+  var INTERIORS = [
+    {img:"img/int-presence-4.jpg",fr:"Présence nº4",en:"Présence nº4"},
+    {img:"img/int-koi.jpg",fr:"Koï",en:"Koï"},
+    {img:"img/int-presence-2.jpg",fr:"Présence nº2",en:"Présence nº2"},
+    {img:"img/int-sans-titre.jpg",fr:"Sans titre",en:"Sans titre"}
+  ];
+
+  var lang = "fr";
+  try{ var s = localStorage.getItem("kr-lang"); if(s==="en"||s==="fr") lang = s; }catch(e){}
+  if(lang==="fr" && !/^fr/i.test(navigator.language||"") && /^en/i.test(navigator.language||"")){ /* keep FR as the site's first language */ }
+
+  var gallery = []; // lightbox sequence
+  function add(src, cap){ gallery.push({src:src,cap:cap}); return gallery.length-1; }
+  function el(tag, attrs, html){ var e=document.createElement(tag); for(var k in attrs){ e.setAttribute(k, attrs[k]); } if(html!=null) e.innerHTML=html; return e; }
+  function bi(fr,en){ return '<span class="fr">'+fr+'</span><span class="en">'+en+'</span>'; }
+  function size(o){ return o.h+" × "+o.w+" cm"; }
+  function capOf(o){ return { fr:o.t+", "+o.y+" — "+L.fr[o.tech]+", "+size(o), en:o.t+", "+o.y+" — "+L.en[o.tech]+", "+size(o) }; }
+
+  // scale wall: 255 cm = 40+50+30+35+40 widths + 4 gaps of 15 cm
+  var hang = document.getElementById("hang"), TOTAL = 255;
+  var maxH = 70;
+  PRESENCE.forEach(function(o){
+    var c = capOf(o), i = add(o.img, c);
+    var f = el("figure",{style:"width:"+(o.w/TOTAL*100)+"%;aspect-ratio:"+o.w+"/"+o.h});
+    var im = el("img",{src:o.img,alt:o.t,loading:"eager","data-i":i,tabindex:"0"});
+    f.appendChild(im);
+    f.appendChild(el("span",{class:"n"},"nº"+o.id+" · "+o.h+"×"+o.w));
+    hang.appendChild(f);
+  });
+  // keep the band tall enough for nº2 (70 cm) at the current width
+  function sizeHang(){ var w = hang.clientWidth; if(!w) return; hang.style.minHeight = Math.max(120, (w/TOTAL)*maxH + 8) + "px"; document.getElementById("bar10").style.width = (w/TOTAL*10)+"px"; }
+  sizeHang(); window.addEventListener("resize", sizeHang);
+
+  function workBlock(o, parent, isPres){
+    var c = capOf(o), i = add(o.img, c);
+    var w = el("article",{class:"work"});
+    var media = el("div",{class:"work-media"});
+    // display height proportional to real height: 70 cm ≈ 520px max
+    var dispH = Math.round(o.h/70*520);
+    var im = el("img",{class:"work-img",src:o.img,alt:o.t+", "+o.y,loading:"lazy","data-i":i,tabindex:"0",style:"max-height:"+dispH+"px;width:auto"});
+    media.appendChild(im);
+    var cart = el("div",{class:"cartel"});
+    var html = '<h3>'+o.t+'</h3>'+
+      '<dl><dt>'+bi(L.fr.year,L.en.year)+'</dt><dd>'+o.y+'</dd>'+
+      '<dt>'+bi(L.fr.tech,L.en.tech)+'</dt><dd>'+bi(L.fr[o.tech],L.en[o.tech])+'</dd>'+
+      '<dt>'+bi(L.fr.size,L.en.size)+'</dt><dd>'+size(o)+'</dd></dl>'+
+      '<p class="note">'+bi(o.fr,o.en)+'</p>'+
+      '<span class="avail">'+bi(L.fr.avail,L.en.avail)+'</span>';
+    cart.innerHTML = html;
+    if(o.det){
+      var di = add(o.det, {fr:o.t+" — "+L.fr.detail+" : "+o.dfr, en:o.t+" — "+L.en.detail+": "+o.den});
+      var th = el("div",{class:"thumb"});
+      th.innerHTML = '<img src="'+o.det+'" alt="'+o.t+' — détail" loading="lazy" data-i="'+di+'" tabindex="0"><span>'+bi(L.fr.detail+" · "+o.dfr, L.en.detail+" · "+o.den)+'</span>';
+      cart.appendChild(th);
+    }
+    w.appendChild(media); w.appendChild(cart); parent.appendChild(w);
+  }
+  var works = document.getElementById("works");
+  PRESENCE.forEach(function(o){ workBlock(o, works, true); });
+  var others = document.getElementById("others");
+  OTHERS.forEach(function(o){ workBlock(o, others, false); });
+
+  var det = document.getElementById("details");
+  PRESENCE.forEach(function(o){
+    var i = add(o.det, {fr:o.t+" — "+L.fr.detail+" : "+o.dfr, en:o.t+" — "+L.en.detail+": "+o.den});
+    var f = el("figure");
+    f.innerHTML = '<img src="'+o.det+'" alt="'+o.t+' — détail" loading="lazy" data-i="'+i+'" tabindex="0"><figcaption><b>'+o.t+'</b>'+bi(o.dfr,o.den)+'</figcaption>';
+    det.appendChild(f);
+  });
+
+  var it = document.getElementById("interiors");
+  INTERIORS.forEach(function(o){
+    var i = add(o.img, {fr:o.fr+" — visualisation dans un intérieur", en:o.en+" — visualisation in a home"});
+    var f = el("figure");
+    f.innerHTML = '<img src="'+o.img+'" alt="'+o.fr+' — visualisation" loading="lazy" data-i="'+i+'" tabindex="0"><figcaption>'+o.fr+' · visualisation</figcaption>';
+    it.appendChild(f);
+  });
+
+  // shop
+  var shop = document.getElementById("shop");
+  PRESENCE.concat(OTHERS).forEach(function(o){
+    var c = capOf(o), i = add(o.img, c);
+    var d = el("article",{class:"item"});
+    d.innerHTML = '<div class="frame"><img src="'+o.img+'" alt="'+o.t+'" loading="lazy" data-i="'+i+'" tabindex="0"></div>'+
+      '<h3>'+o.t+'</h3><div class="meta">'+o.y+' · '+bi(L.fr[o.tech],L.en[o.tech])+' · '+size(o)+'</div>'+
+      '<div class="row"><span class="avail">'+bi("Disponible","Available")+'</span><span class="price">'+bi("Prix sur demande","Price on request")+'</span></div>'+
+      '<button type="button" class="ask" data-t="'+o.t+'">'+bi("Demander cette œuvre","Ask about this work")+'</button>';
+    shop.appendChild(d);
+  });
+  var toastT=null;
+  function toast(msg){ var t=document.querySelector(".toast"); if(!t){ t=el("div",{class:"toast",role:"status"}); document.body.appendChild(t);} t.textContent=msg; t.hidden=false; clearTimeout(toastT); toastT=setTimeout(function(){t.hidden=true;},3200); }
+  shop.addEventListener("click", function(e){
+    var b = e.target.closest(".ask"); if(!b) return;
+    var t = b.getAttribute("data-t"), mail = "katya.niki1@gmail.com";
+    var msg = lang==="fr" ? "E-mail copié : "+mail+" — indiquez « "+t+" » dans votre message" : "E-mail copied: "+mail+" — mention “"+t+"” in your message";
+    var fallback = lang==="fr" ? "Écrivez à "+mail+" en indiquant « "+t+" »" : "Write to "+mail+" and mention “"+t+"”";
+    try{ navigator.clipboard.writeText(mail).then(function(){toast(msg);}, function(){toast(fallback);}); }catch(err){ toast(fallback); }
+  });
+
+  // tabs via #hash
+  var VIEWS=["accueil","oeuvres","expositions","boutique","ateliers","apropos","contact"];
+  function route(){
+    var h=(location.hash||"").slice(1); if(VIEWS.indexOf(h)<0) h="accueil";
+    document.querySelectorAll(".view").forEach(function(v){ v.hidden = v.getAttribute("data-view")!==h; });
+    document.querySelectorAll("nav.links a").forEach(function(a){ if(a.getAttribute("href")==="#"+h) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
+    window.scrollTo(0,0);
+    if(h==="accueil") sizeHang();
+  }
+  window.addEventListener("hashchange", route);
+
+  // language
+  function setLang(l){
+    lang = l; document.documentElement.setAttribute("data-lang", l); document.documentElement.setAttribute("lang", l);
+    document.getElementById("btn-fr").setAttribute("aria-pressed", l==="fr");
+    document.getElementById("btn-en").setAttribute("aria-pressed", l==="en");
+    try{ localStorage.setItem("kr-lang", l); }catch(e){}
+    if(!lb.hidden) show(cur);
+  }
+  document.querySelectorAll(".lang button").forEach(function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+
+  // lightbox
+  var lb = document.getElementById("lb"), lbImg = document.getElementById("lb-img"), lbCap = document.getElementById("lb-cap"), cur = 0, lastFocus = null;
+  function show(i){ cur = (i+gallery.length)%gallery.length; var g = gallery[cur]; lbImg.src = g.src; lbImg.alt = g.cap[lang]; lbCap.textContent = g.cap[lang]; }
+  function open(i){ lastFocus = document.activeElement; show(i); lb.hidden = false; document.getElementById("lb-close").focus(); }
+  function close(){ lb.hidden = true; if(lastFocus) lastFocus.focus(); }
+  document.addEventListener("click", function(e){ var t = e.target.closest("img[data-i]"); if(t){ open(+t.getAttribute("data-i")); } });
+  document.addEventListener("keydown", function(e){
+    if(!lb.hidden){ if(e.key==="Escape") close(); if(e.key==="ArrowRight") show(cur+1); if(e.key==="ArrowLeft") show(cur-1); return; }
+    if((e.key==="Enter"||e.key===" ") && e.target.matches && e.target.matches("img[data-i]")){ e.preventDefault(); open(+e.target.getAttribute("data-i")); }
+  });
+  document.getElementById("lb-close").addEventListener("click", close);
+  document.getElementById("lb-prev").addEventListener("click", function(){ show(cur-1); });
+  document.getElementById("lb-next").addEventListener("click", function(){ show(cur+1); });
+  lb.addEventListener("click", function(e){ if(e.target===lb) close(); });
+
+  // copy e-mail
+  var cb = document.getElementById("copy-mail");
+  cb.addEventListener("click", function(){
+    var txt = document.getElementById("mail").textContent;
+    function sel(){ var r = document.createRange(); r.selectNodeContents(document.getElementById("mail")); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+    var done = function(){ cb.innerHTML = bi("Copié","Copied"); setTimeout(function(){ cb.innerHTML = bi("Copier","Copy"); }, 1600); };
+    try{ navigator.clipboard.writeText(txt).then(done, sel); }catch(e){ sel(); }
+  });
+
+  setLang(lang);
+  route();
+})();
+</script>
+
+</body>
+</html>

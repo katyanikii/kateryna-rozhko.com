@@ -1,2 +1,3 @@
 # kateryna-rozhko.com
-Art site
+
+Site de Kateryna Rozhko, artiste peintre à Bruxelles.
