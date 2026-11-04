@@ -355,14 +355,6 @@ html,body{overflow-x:clip}
       <div><h3><span class="fr">Livraison</span><span class="en">Delivery</span></h3><p><span class="fr">Remise en main propre à Bruxelles ou envoi à convenir. Œuvres signées, vendues sans cadre.</span><span class="en">Hand delivery in Brussels or shipping by arrangement. Signed works, sold unframed.</span></p></div>
     </div>
   </section>
-  <section class="wrap">
-    <div class="sec-head">
-      <div class="eyebrow">Visualisations</div>
-      <h2><span class="fr">Dans un intérieur</span><span class="en">In a home</span></h2>
-    </div>
-    <div class="interiors" id="interiors"></div>
-    <p class="eyebrow" style="margin-top:14px;text-transform:none;letter-spacing:0"><span class="fr">Montages numériques à l’échelle, pour donner une idée des dimensions réelles.</span><span class="en">Digital mock-ups to scale, to give a sense of the real dimensions.</span></p>
-  </section>
 </div>
 
 <!-- ATELIERS -->
@@ -557,7 +549,7 @@ html,body{overflow-x:clip}
     det.appendChild(f);
   });
 
-  var it = document.getElementById("interiors");
+  var it = document.getElementById("interiors"); if(it)
   INTERIORS.forEach(function(o){
     var i = add(o.img, {fr:o.fr+" — visualisation dans un intérieur", en:o.en+" — visualisation in a home"});
     var f = el("figure");
