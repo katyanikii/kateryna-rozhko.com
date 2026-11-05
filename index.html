@@ -9,9 +9,17 @@
 <meta property="og:image" content="https://kateryna-rozhko.com/img/presence-1.jpg">
 <meta property="og:url" content="https://kateryna-rozhko.com/">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="fr_BE">
+<meta property="og:site_name" content="Kateryna Rozhko">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="1600">
+<meta property="og:image:alt" content="Présence nº1, huile sur toile, Kateryna Rozhko">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="author" content="Kateryna Rozhko">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Kateryna Rozhko","jobTitle":"Artiste peintre","url":"https://kateryna-rozhko.com/","image":"https://kateryna-rozhko.com/img/presence-1.jpg","address":{"@type":"PostalAddress","addressLocality":"Bruxelles","addressCountry":"BE"},"sameAs":["https://www.instagram.com/katyanikii.art/"],"knowsAbout":["Peinture à l'huile","Art contemporain"]}</script>
 <link rel="canonical" href="https://kateryna-rozhko.com/">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
-<title>Kateryna Rozhko</title>
+<title>Kateryna Rozhko — artiste peintre à Bruxelles · peinture à l’huile</title>
 <meta name="description" content="Kateryna Rozhko — artiste peintre à Bruxelles. Série Présence, huile sur toile, 2025–2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -518,7 +526,7 @@ html,body{overflow-x:clip}
     var media = el("div",{class:"work-media"});
     // display height proportional to real height: 70 cm ≈ 520px max
     var dispH = Math.round(o.h/70*520);
-    var im = el("img",{class:"work-img",src:o.img,alt:o.t+", "+o.y,loading:"lazy","data-i":i,tabindex:"0",style:"max-height:"+dispH+"px;width:auto"});
+    var im = el("img",{class:"work-img",src:o.img,alt:o.t+" — Kateryna Rozhko, "+L.fr[o.tech].toLowerCase()+", "+o.y,loading:"lazy","data-i":i,tabindex:"0",style:"max-height:"+dispH+"px;width:auto"});
     media.appendChild(im);
     var cart = el("div",{class:"cartel"});
     var html = '<h3>'+o.t+'</h3>'+
@@ -531,7 +539,7 @@ html,body{overflow-x:clip}
     if(o.det){
       var di = add(o.det, {fr:o.t+" — "+L.fr.detail+" : "+o.dfr, en:o.t+" — "+L.en.detail+": "+o.den});
       var th = el("div",{class:"thumb"});
-      th.innerHTML = '<img src="'+o.det+'" alt="'+o.t+' — détail" loading="lazy" data-i="'+di+'" tabindex="0"><span>'+bi(L.fr.detail+" · "+o.dfr, L.en.detail+" · "+o.den)+'</span>';
+      th.innerHTML = '<img src="'+o.det+'" alt="'+o.t+' (détail) — Kateryna Rozhko" loading="lazy" data-i="'+di+'" tabindex="0"><span>'+bi(L.fr.detail+" · "+o.dfr, L.en.detail+" · "+o.den)+'</span>';
       cart.appendChild(th);
     }
     w.appendChild(media); w.appendChild(cart); parent.appendChild(w);
@@ -545,7 +553,7 @@ html,body{overflow-x:clip}
   PRESENCE.forEach(function(o){
     var i = add(o.det, {fr:o.t+" — "+L.fr.detail+" : "+o.dfr, en:o.t+" — "+L.en.detail+": "+o.den});
     var f = el("figure");
-    f.innerHTML = '<img src="'+o.det+'" alt="'+o.t+' — détail" loading="lazy" data-i="'+i+'" tabindex="0"><figcaption><b>'+o.t+'</b>'+bi(o.dfr,o.den)+'</figcaption>';
+    f.innerHTML = '<img src="'+o.det+'" alt="'+o.t+' (détail) — Kateryna Rozhko" loading="lazy" data-i="'+i+'" tabindex="0"><figcaption><b>'+o.t+'</b>'+bi(o.dfr,o.den)+'</figcaption>';
     det.appendChild(f);
   });
 
@@ -562,7 +570,7 @@ html,body{overflow-x:clip}
   PRESENCE.concat(OTHERS).forEach(function(o){
     var c = capOf(o), i = add(o.img, c);
     var d = el("article",{class:"item"});
-    d.innerHTML = '<div class="frame"><div class="in"><img src="'+o.img+'" alt="'+o.t+'" loading="lazy" data-i="'+i+'" tabindex="0"></div></div>'+
+    d.innerHTML = '<div class="frame"><div class="in"><img src="'+o.img+'" alt="'+o.t+' — Kateryna Rozhko, '+L.fr[o.tech].toLowerCase()+', '+o.y+'" loading="lazy" data-i="'+i+'" tabindex="0"></div></div>'+
       '<h3>'+o.t+'</h3><div class="meta">'+o.y+' · '+bi(L.fr[o.tech],L.en[o.tech])+' · '+size(o)+'</div>'+
       '<div class="row"><span class="avail">'+bi("Disponible","Available")+'</span><span class="price">'+pr(o.t)+'</span></div>'+
       '<button type="button" class="ask" data-t="'+o.t+'">'+bi("Demander cette œuvre","Ask about this work")+'</button>';
