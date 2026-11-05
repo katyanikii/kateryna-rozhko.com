@@ -604,7 +604,7 @@ html,body{overflow-x:clip}
   var reduce=window.matchMedia("(prefers-reduced-motion: reduce)");
   HERO.forEach(function(h,k){
     var f=el("figure",{"aria-hidden":k?"true":"false"});
-    var im=el("img",{alt:h[1]+" — détail",loading:k?"lazy":"eager","data-l":"img/"+h[0]+"-l.jpg","data-p":"img/"+h[0]+"-p.jpg"});
+    var im=el("img",{alt:h[1]+" (détail), peinture de Kateryna Rozhko",loading:k?"lazy":"eager","data-l":"img/"+h[0]+"-l.jpg","data-p":"img/"+h[0]+"-p.jpg"});
     f.appendChild(im); sl.insertBefore(f, sl.querySelector(".over"));
     var b=el("button",{type:"button","aria-label":h[1]}); b.addEventListener("click",function(){ go(k); restart(); }); dots.appendChild(b);
   });
