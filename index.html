@@ -64,6 +64,15 @@ nav.links a{text-decoration:none;color:var(--muted)}
 nav.links a:hover{color:var(--ink)}
 .ig{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border:1px solid var(--line);border-radius:999px;color:var(--muted);text-decoration:none;margin-right:-8px}
 .ig:hover{color:var(--ink);border-color:var(--ink)}
+.dd{position:relative;display:inline-block}
+.dd-t{display:inline-flex;align-items:center;gap:5px}
+.dd-t .car{transition:transform .2s}
+.dd-t[aria-expanded="true"] .car{transform:rotate(180deg)}
+.dd-m{position:absolute;top:calc(100% + 12px);left:-14px;z-index:40;display:grid;min-width:190px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 30px -12px var(--shadow)}
+.dd-m[hidden]{display:none!important}
+nav.links .dd-m a{padding:9px 12px;border-radius:8px;color:var(--ink);white-space:nowrap;text-decoration:none}
+nav.links .dd-m a:hover{background:var(--wall)}
+nav.links .dd-m a[aria-current]{text-decoration:none}
 .lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-family:var(--mono);font-size:12px}
 .lang button{all:unset;cursor:pointer;padding:4px 10px;color:var(--muted)}
 .lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
@@ -259,7 +268,8 @@ html,body{overflow-x:clip}
     <nav class="links" aria-label="Sections">
       <a href="#oeuvres"><span class="fr">Œuvres</span><span class="en">Works</span></a>
       <a href="#expositions"><span class="fr">Expositions</span><span class="en">Exhibitions</span></a>
-      <a href="#boutique"><span class="fr">Boutique</span><span class="en">Shop</span></a>
+      <div class="dd"><a href="#boutique" class="dd-t" aria-haspopup="true" aria-expanded="false"><span class="fr">Boutique</span><span class="en">Shop</span><svg class="car" viewBox="0 0 10 6" width="9" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></a>
+        <div class="dd-m" hidden><a href="#boutique"><span class="fr">Œuvres originales</span><span class="en">Original works</span></a><a href="#cartes"><span class="fr">Cartes postales</span><span class="en">Postcards</span></a></div></div>
       <a href="#ateliers"><span class="fr">Ateliers</span><span class="en">Workshops</span></a>
       <a href="#apropos"><span class="fr">À propos</span><span class="en">About</span></a>
       <a href="#contact">Contact</a>
@@ -666,6 +676,16 @@ html,body{overflow-x:clip}
     if(h==="accueil") sizeHang();
   }
   window.addEventListener("hashchange", route);
+  // Boutique dropdown
+  (function(){
+    var t=document.querySelector(".dd-t"), m=document.querySelector(".dd-m");
+    function close(){ m.hidden=true; t.setAttribute("aria-expanded","false"); }
+    t.addEventListener("click",function(e){ e.preventDefault(); var o=m.hidden; m.hidden=!o; t.setAttribute("aria-expanded", o?"true":"false"); });
+    m.addEventListener("click",function(e){ if(e.target.closest("a")){ close(); if(e.target.closest("a").getAttribute("href")===location.hash) route(); } });
+    document.addEventListener("click",function(e){ if(!e.target.closest(".dd")) close(); });
+    document.addEventListener("keydown",function(e){ if(e.key==="Escape") close(); });
+  })();
+
 
   // hero slideshow
   var HERO=[["hero-4","Présence nº4"],["hero-5","Présence nº5"],["hero-1","Présence nº1"],["hero-3","Présence nº3"],["hero-2","Présence nº2"],["hero-st","Sans titre"]];
