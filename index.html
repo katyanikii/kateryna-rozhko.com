@@ -680,7 +680,7 @@ html,body{overflow-x:clip}
   var feg=document.getElementById("fe-grid");
   [["Présence nº1","presence-1"],["Présence nº2","presence-2"],["Présence nº3","presence-3"],["Présence nº4","presence-4"],["Présence nº5","presence-5"],["Koï","koi"],["Pool","pool"]].forEach(function(c){
     var full="img/fe-"+c[1]+".jpg", i=add(full,{fr:"Fond d’écran — "+c[0],en:"Wallpaper — "+c[0]});
-    feg.appendChild(el("figure",{},'<img src="img/fe-'+c[1]+'-t.jpg" alt="Fond d’écran '+c[0]+' — Kateryna Rozhko" loading="lazy" data-i="'+i+'" tabindex="0"><figcaption><span>'+c[0]+'</span><a class="dl" href="'+full+'" download="Kateryna-Rozhko-'+c[1]+'.jpg">'+bi("Enregistrer","Save")+'</a></figcaption>'));
+    feg.appendChild(el("figure",{},'<img src="img/fe-'+c[1]+'-t.jpg" alt="Fond d’écran '+c[0]+' — Kateryna Rozhko" loading="lazy" data-i="'+i+'" tabindex="0"><figcaption><span>'+c[0]+'</span><a class="dl" href="'+full+'" target="_blank" rel="noopener">'+bi("Enregistrer","Save")+'</a></figcaption>'));
   });
   // wallpapers: save straight to photos via the share sheet when possible
   (function(){
@@ -693,8 +693,7 @@ html,body{overflow-x:clip}
       var a=e.target.closest("a.dl"); if(!a || !touch) return;
       e.preventDefault(); var url=a.getAttribute("href"), c=cache[url];
       if(!canFiles()){ // browsers without image sharing: show the picture, save with a long press
-        var im=a.closest("figure").querySelector("img[data-i]"); open(+im.getAttribute("data-i"), im);
-        toast(lang==="fr"?"Appui long sur l’image pour l’enregistrer":"Long-press the image to save it"); return; }
+        window.open(url,"_blank") || (location.href=url); return; }
       function share(f){ navigator.share({files:[f]}).catch(function(err){ if(err && err.name==="NotAllowedError") toast(lang==="fr"?"Touchez encore « Enregistrer »":"Tap “Save” again"); }); }
       if(c instanceof File) share(c); else get(url).then(share, function(){ location.href=url; });
     });
