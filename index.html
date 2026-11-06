@@ -252,8 +252,16 @@ nav.links a[aria-current="page"]{color:var(--ink);text-decoration:underline;text
 .slides .cap{font-family:var(--mono);font-size:12px;opacity:.85;display:flex;gap:14px;align-items:center}
 .dots{display:flex;gap:6px}
 .dots button{all:unset;cursor:pointer;width:22px;height:2px;background:rgba(243,242,238,.4)}
-.dots button[aria-current="true"]{background:#f3f2ee}
+.dots button[aria-current="true"]{background-color:#f3f2ee}
 .dots button:focus-visible{outline:2px solid #f3f2ee;outline-offset:4px}
+.sl-nav{all:unset;position:absolute;top:50%;z-index:3;transform:translateY(-50%);width:46px;height:46px;border-radius:999px;display:flex;align-items:center;justify-content:center;color:#f3f2ee;background:rgba(10,12,12,.28);backdrop-filter:blur(4px);cursor:pointer;opacity:.75;transition:opacity .2s,background .2s}
+.sl-nav.prev{left:16px}.sl-nav.next{right:16px}
+.sl-nav:hover{opacity:1;background:rgba(10,12,12,.45)}
+.sl-nav:focus-visible{outline:2px solid #f3f2ee;outline-offset:3px}
+@media (hover:hover){.slides .sl-nav{opacity:0}.slides:hover .sl-nav,.slides .sl-nav:focus-visible{opacity:.8}}
+@media (max-width:600px){.sl-nav{width:38px;height:38px}.sl-nav.prev{left:10px}.sl-nav.next{right:10px}}
+.slides{touch-action:pan-y}
+.dots button{padding:10px 0;background-clip:content-box}
 @media (prefers-reduced-motion:reduce){.slides img{transform:none!important}}
 
 
@@ -286,6 +294,8 @@ html,body{overflow-x:clip}
 <!-- ACCUEIL -->
 <div class="view" data-view="accueil">
   <div class="slides" id="slides" aria-roledescription="carousel" aria-label="Détails des œuvres">
+    <button type="button" class="sl-nav prev" aria-label="Précédent / Previous"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+    <button type="button" class="sl-nav next" aria-label="Suivant / Next"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
     <div class="over"><div class="wrap">
       <div><p class="who">Kateryna Rozhko</p><div class="role"><span class="fr">Peintre · Bruxelles</span><span class="en">Painter · Brussels</span></div></div>
       <div class="cap"><span id="slide-cap"></span><span class="dots" id="dots"></span></div>
@@ -707,6 +717,15 @@ html,body{overflow-x:clip}
   }
   function restart(){ clearInterval(st); if(!reduce.matches) st=setInterval(function(){ go(si+1); },5500); }
   srcs(); go(0); restart();
+  sl.querySelector(".sl-nav.prev").addEventListener("click",function(){ go(si-1); restart(); });
+  sl.querySelector(".sl-nav.next").addEventListener("click",function(){ go(si+1); restart(); });
+  (function(){ var x0=null,y0=null;
+    sl.addEventListener("touchstart",function(e){ x0=e.touches[0].clientX; y0=e.touches[0].clientY; },{passive:true});
+    sl.addEventListener("touchend",function(e){ if(x0===null) return; var dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0; x0=null;
+      if(Math.abs(dx)>40 && Math.abs(dx)>Math.abs(dy)){ go(si+(dx<0?1:-1)); restart(); } },{passive:true});
+  })();
+  sl.setAttribute("tabindex","0");
+  sl.addEventListener("keydown",function(e){ if(e.key==="ArrowRight"){ go(si+1); restart(); } else if(e.key==="ArrowLeft"){ go(si-1); restart(); } });
   if(portrait.addEventListener) portrait.addEventListener("change",srcs);
 
   // language
