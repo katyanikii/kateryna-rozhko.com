@@ -690,8 +690,11 @@ html,body{overflow-x:clip}
     var touch=matchMedia("(pointer:coarse)").matches;
     feg.addEventListener("pointerdown",function(e){ var a=e.target.closest("a.dl"); if(a && touch && canFiles()) get(a.getAttribute("href")); });
     feg.addEventListener("click",function(e){
-      var a=e.target.closest("a.dl"); if(!a || !touch || !canFiles()) return;
+      var a=e.target.closest("a.dl"); if(!a || !touch) return;
       e.preventDefault(); var url=a.getAttribute("href"), c=cache[url];
+      if(!canFiles()){ // browsers without image sharing: show the picture, save with a long press
+        var im=a.closest("figure").querySelector("img[data-i]"); open(+im.getAttribute("data-i"), im);
+        toast(lang==="fr"?"Appui long sur l’image pour l’enregistrer":"Long-press the image to save it"); return; }
       function share(f){ navigator.share({files:[f]}).catch(function(err){ if(err && err.name==="NotAllowedError") toast(lang==="fr"?"Touchez encore « Enregistrer »":"Tap “Save” again"); }); }
       if(c instanceof File) share(c); else get(url).then(share, function(){ location.href=url; });
     });
