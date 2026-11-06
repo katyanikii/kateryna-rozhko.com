@@ -446,7 +446,7 @@ html,body{overflow-x:clip}
     <h2><span class="fr">Fonds d’écran</span><span class="en">Wallpapers</span></h2>
     <p class="pc-lead" style="margin-top:18px"><span class="fr">Mes peintures en fond d’écran pour votre téléphone, à télécharger gratuitement. Format 1290 × 2796, pour iPhone et Android. Pour usage personnel uniquement.</span><span class="en">My paintings as wallpapers for your phone, free to download. 1290 × 2796, for iPhone and Android. For personal use only.</span></p>
     <div class="fe-grid" id="fe-grid"></div>
-    <p class="fe-how"><span class="fr">Sur téléphone : touchez « Télécharger », puis appuyez longuement sur l’image et choisissez « Enregistrer ». Ensuite : Réglages → Fond d’écran.</span><span class="en">On a phone: tap “Download”, then long-press the image and choose “Save”. Then: Settings → Wallpaper.</span></p>
+    <p class="fe-how"><span class="fr">Sur téléphone : touchez « Enregistrer », puis « Enregistrer l’image » — elle arrive dans vos Photos. Ensuite : Réglages → Fond d’écran.</span><span class="en">On a phone: tap “Save”, then “Save Image” — it goes straight to your Photos. Then: Settings → Wallpaper.</span></p>
   </section>
 </div>
 
@@ -680,8 +680,22 @@ html,body{overflow-x:clip}
   var feg=document.getElementById("fe-grid");
   [["Présence nº1","presence-1"],["Présence nº2","presence-2"],["Présence nº3","presence-3"],["Présence nº4","presence-4"],["Présence nº5","presence-5"],["Koï","koi"],["Pool","pool"]].forEach(function(c){
     var full="img/fe-"+c[1]+".jpg", i=add(full,{fr:"Fond d’écran — "+c[0],en:"Wallpaper — "+c[0]});
-    feg.appendChild(el("figure",{},'<img src="img/fe-'+c[1]+'-t.jpg" alt="Fond d’écran '+c[0]+' — Kateryna Rozhko" loading="lazy" data-i="'+i+'" tabindex="0"><figcaption><span>'+c[0]+'</span><a class="dl" href="'+full+'" download="Kateryna-Rozhko-'+c[1]+'.jpg">'+bi("Télécharger","Download")+'</a></figcaption>'));
+    feg.appendChild(el("figure",{},'<img src="img/fe-'+c[1]+'-t.jpg" alt="Fond d’écran '+c[0]+' — Kateryna Rozhko" loading="lazy" data-i="'+i+'" tabindex="0"><figcaption><span>'+c[0]+'</span><a class="dl" href="'+full+'" download="Kateryna-Rozhko-'+c[1]+'.jpg">'+bi("Enregistrer","Save")+'</a></figcaption>'));
   });
+  // wallpapers: save straight to photos via the share sheet when possible
+  (function(){
+    var cache={};
+    function get(url){ if(!cache[url]) cache[url]=fetch(url).then(function(r){ return r.blob(); }).then(function(b){ return (cache[url]=new File([b], url.split("/").pop().replace("fe-","Kateryna-Rozhko-"), {type:"image/jpeg"})); }); return cache[url]; }
+    function canFiles(){ try{ return !!(navigator.canShare && navigator.canShare({files:[new File([""],"x.jpg",{type:"image/jpeg"})]})); }catch(e){ return false; } }
+    var touch=matchMedia("(pointer:coarse)").matches;
+    feg.addEventListener("pointerdown",function(e){ var a=e.target.closest("a.dl"); if(a && touch && canFiles()) get(a.getAttribute("href")); });
+    feg.addEventListener("click",function(e){
+      var a=e.target.closest("a.dl"); if(!a || !touch || !canFiles()) return;
+      e.preventDefault(); var url=a.getAttribute("href"), c=cache[url];
+      function share(f){ navigator.share({files:[f]}).catch(function(err){ if(err && err.name==="NotAllowedError") toast(lang==="fr"?"Touchez encore « Enregistrer »":"Tap “Save” again"); }); }
+      if(c instanceof File) share(c); else get(url).then(share, function(){ location.href=url; });
+    });
+  })();
   var toastT=null;
   function toast(msg){ var t=document.querySelector(".toast"); if(!t){ t=el("div",{class:"toast",role:"status"}); document.body.appendChild(t);} t.textContent=msg; t.hidden=false; clearTimeout(toastT); toastT=setTimeout(function(){t.hidden=true;},3200); }
   function ask(t){
