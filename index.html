@@ -429,7 +429,7 @@ html,body{overflow-x:clip}
         <h2><span class="fr">Cartes postales</span><span class="en">Postcards</span></h2>
         <p class="pc-lead"><span class="fr">Huit cartes d’après mes peintures, imprimées à Bruxelles sur papier mat 350 g, format A6. Au dos : le titre de l’œuvre, la place pour un mot et un QR code vers mon Instagram.</span><span class="en">Eight cards after my paintings, printed in Brussels on 350 g matte paper, A6 format. On the back: the title of the work, space for a note and a QR code to my Instagram.</span></p>
         <ul class="pc-price">
-          <li><b>3,50 €</b><span class="fr">1 carte</span><span class="en">1 card</span></li>
+          <li><b>4 €</b><span class="fr">1 carte</span><span class="en">1 card</span></li>
           <li><b>6 €</b><span class="fr">2 cartes</span><span class="en">2 cards</span></li>
           <li><b>7,50 €</b><span class="fr">3 cartes</span><span class="en">3 cards</span></li>
         </ul>
@@ -671,8 +671,8 @@ html,body{overflow-x:clip}
   var CP=[["Présence nº1","presence-1"],["Présence nº2","presence-2"],["Présence nº3","presence-3"],["Présence nº4","presence-4"],["Présence nº5","presence-5"],["Koï","koi"],["Pool","pool"],["Sans titre","sans-titre"]];
   var pcg=document.getElementById("pc-grid");
   CP.forEach(function(c){
-    var src="img/cp-"+c[1]+".jpg", i=add(src,{fr:"Carte postale — "+c[0]+" · 3,50 €",en:"Postcard — "+c[0]+" · €3.50"});
-    pcg.appendChild(el("figure",{},'<img src="'+src+'" alt="Carte postale '+c[0]+' — Kateryna Rozhko" loading="lazy" data-i="'+i+'" tabindex="0"><figcaption><span>'+c[0]+'</span><span class="m">3,50 €</span></figcaption>'));
+    var src="img/cp-"+c[1]+".jpg", i=add(src,{fr:"Carte postale — "+c[0]+" · 4 €",en:"Postcard — "+c[0]+" · €4"});
+    pcg.appendChild(el("figure",{},'<img src="'+src+'" alt="Carte postale '+c[0]+' — Kateryna Rozhko" loading="lazy" data-i="'+i+'" tabindex="0"><figcaption><span>'+c[0]+'</span><span class="m">4 €</span></figcaption>'));
   });
   (function(){ var src="img/cp-verso.jpg", i=add(src,{fr:"Verso des cartes postales",en:"Back of the postcards"});
     pcg.appendChild(el("figure",{},'<img src="'+src+'" alt="Verso de la carte postale" loading="lazy" data-i="'+i+'" tabindex="0"><figcaption><span>'+bi("Verso","Back")+'</span><span class="m">QR · Instagram</span></figcaption>')); })();
