@@ -605,6 +605,11 @@ html,body{overflow-x:clip}
   function sizeHang(){ var w = hang.clientWidth; if(!w) return; hang.style.minHeight = Math.max(120, (w/TOTAL)*maxH + 8) + "px"; document.getElementById("bar10").style.width = (w/TOTAL*10)+"px"; }
   sizeHang(); window.addEventListener("resize", sizeHang);
 
+  var HEROMAP={"Présence nº1":"hero-1","Présence nº2":"hero-2","Présence nº3":"hero-3","Présence nº4":"hero-4","Présence nº5":"hero-5","Sans titre":"hero-st"};
+  function extras(o){ var x=[];
+    if(o.det) x.push(add(o.det,{fr:o.t+" — "+L.fr.detail+" : "+o.dfr, en:o.t+" — "+L.en.detail+": "+o.den}));
+    if(HEROMAP[o.t]) x.push(add("img/"+HEROMAP[o.t]+"-l.jpg",{fr:o.t+" — "+L.fr.detail, en:o.t+" — "+L.en.detail}));
+    return x.join(","); }
   function workBlock(o, parent, isPres){
     var c = capOf(o), i = add(o.img, c);
     var w = el("article",{class:"work"});
@@ -612,6 +617,7 @@ html,body{overflow-x:clip}
     // display height proportional to real height: 70 cm ≈ 520px max
     var dispH = Math.round(o.h/70*520);
     var im = el("img",{class:"work-img",src:o.img,alt:o.t+" — Kateryna Rozhko, "+L.fr[o.tech].toLowerCase()+", "+o.y,loading:"lazy","data-i":i,tabindex:"0",style:"max-height:"+dispH+"px;width:auto"});
+    im.setAttribute("data-x", extras(o));
     media.appendChild(im);
     var cart = el("div",{class:"cartel"});
     var html = '<h3>'+o.t+'</h3>'+
@@ -655,7 +661,7 @@ html,body{overflow-x:clip}
   PRESENCE.concat(OTHERS).forEach(function(o){
     var c = capOf(o), i = add(o.img, c);
     var d = el("article",{class:"item"});
-    d.innerHTML = '<div class="frame"><div class="in"><img src="'+o.img+'" alt="'+o.t+' — Kateryna Rozhko, '+L.fr[o.tech].toLowerCase()+', '+o.y+'" loading="lazy" data-i="'+i+'" tabindex="0"></div></div>'+
+    d.innerHTML = '<div class="frame"><div class="in"><img src="'+o.img+'" alt="'+o.t+' — Kateryna Rozhko, '+L.fr[o.tech].toLowerCase()+', '+o.y+'" loading="lazy" data-i="'+i+'" data-x="'+extras(o)+'" tabindex="0"></div></div>'+
       '<h3>'+o.t+'</h3><div class="meta">'+o.y+' · '+bi(L.fr[o.tech],L.en[o.tech])+' · '+size(o)+'</div>'+
       '<div class="row"><span class="avail">'+bi("Disponible","Available")+'</span><span class="price">'+pr(o.t)+'</span></div>'+
       '<button type="button" class="ask" data-t="'+o.t+'">'+bi("Demander cette œuvre","Ask about this work")+'</button>';
@@ -783,7 +789,15 @@ html,body{overflow-x:clip}
   function step(d){ if(grp && grp.length>1){ var k=grp.indexOf(cur); show(grp[(k+d+grp.length)%grp.length]); } else if(!grp) show(cur+d); }
   function open(i, src){ lastFocus = document.activeElement;
     grp = null;
-    if(src){ var box = src.closest("section, .shop, .pc-grid, .pc-table, .fe-grid, .grid"); if(box){ grp = [].map.call(box.querySelectorAll("img[data-i]"), function(m){ return +m.getAttribute("data-i"); }); if(grp.indexOf(i)<0) grp=null; } }
+    var host = src && src.closest(".work, .item"), main = host && host.querySelector("img[data-x]");
+    if(main){ // a painting: only the painting and its details
+      grp=[+main.getAttribute("data-i")].concat((main.getAttribute("data-x")||"").split(",").filter(function(v){return v!=="";}).map(Number));
+      if(src!==main) i = grp.length>1 ? grp[1] : grp[0];
+      src = null; }
+    if(src){ var box = src.closest("section, .shop, .pc-grid, .pc-table, .fe-grid, .grid"); if(box){ grp=[]; var seen={}; function push(n){ if(!seen[n]){ seen[n]=1; grp.push(n); } }
+        [].forEach.call(box.querySelectorAll("img[data-i]"), function(m){ push(+m.getAttribute("data-i")); (m.getAttribute("data-x")||"").split(",").forEach(function(v){ if(v!=="") push(+v); }); });
+        if(grp.indexOf(i)<0) grp=null; } }
+    var multi = !grp || grp.length>1; document.getElementById("lb-prev").hidden = !multi; document.getElementById("lb-next").hidden = !multi;
     show(i); lb.hidden = false; document.getElementById("lb-close").focus(); }
   function close(){ lb.hidden = true; if(lastFocus) lastFocus.focus(); }
   document.addEventListener("click", function(e){ var t = e.target.closest("img[data-i]"); if(t && lb.hidden){ open(+t.getAttribute("data-i"), t); } });
