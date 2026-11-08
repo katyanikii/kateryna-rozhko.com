@@ -684,7 +684,7 @@ html,body{overflow-x:clip}
   document.getElementById("pc-sec").addEventListener("click",function(e){ var b=e.target.closest(".pc-ask"); if(b){ shop.dispatchEvent(new CustomEvent("askfor",{detail:b.getAttribute("data-t")})); } });
   // wallpapers
   var feg=document.getElementById("fe-grid");
-  [["Présence nº1","presence-1"],["Présence nº2","presence-2"],["Présence nº3","presence-3"],["Présence nº4","presence-4"],["Présence nº5","presence-5"],["Koï","koi"],["Pool","pool"],["Sans titre","sans-titre"]].forEach(function(c){
+  [["Présence nº1","presence-1-v2"],["Présence nº2","presence-2"],["Présence nº3","presence-3"],["Présence nº4","presence-4"],["Présence nº5","presence-5"],["Koï","koi"],["Pool","pool"],["Sans titre","sans-titre"]].forEach(function(c){
     var full="img/fe-"+c[1]+".jpg", i=add(full,{fr:"Fond d’écran — "+c[0],en:"Wallpaper — "+c[0]});
     feg.appendChild(el("figure",{},'<img src="img/fe-'+c[1]+'-t.jpg" alt="Fond d’écran '+c[0]+' — Kateryna Rozhko" loading="lazy" data-i="'+i+'" tabindex="0"><figcaption><span>'+c[0]+'</span><a class="dl" href="'+full+'" target="_blank" rel="noopener">'+bi("Enregistrer","Save")+'</a></figcaption>'));
   });
