@@ -293,7 +293,7 @@ html,body{overflow-x:clip}
     <div class="lang" role="group" aria-label="Langue / Language">
       <button type="button" id="btn-fr" data-set="fr" aria-pressed="true">FR</button>
       <button type="button" id="btn-en" data-set="en" aria-pressed="false">EN</button>
-      <button type="button" id="btn-uk" data-set="uk" aria-pressed="false">UA</button>
+      <button type="button" id="btn-uk" data-set="uk" aria-pressed="false" hidden>UA</button>
     </div>
   </div>
 </header>
@@ -608,7 +608,7 @@ html,body{overflow-x:clip}
   var PRICE={"Présence nº1":550,"Présence nº2":700,"Présence nº3":400,"Présence nº4":500,"Présence nº5":500,"Koï":700,"Pool":350,"Sans titre":700,"Night in Burgas":540,"Les Récollets":450,"Glass":180,"Pomegranates and a lemon":150,"Flower and metal":120};
   function pr(t){ return PRICE[t] ? PRICE[t].toLocaleString("fr-BE")+" €" : ""; }
   var lang = "fr";
-  try{ var s = localStorage.getItem("kr-lang"); if(s==="en"||s==="fr"||s==="uk") lang = s; }catch(e){}
+  try{ var s = localStorage.getItem("kr-lang"); if(s==="en"||s==="fr") lang = s; }catch(e){}
   if(lang==="fr" && !/^fr/i.test(navigator.language||"") && /^en/i.test(navigator.language||"")){ /* keep FR as the site's first language */ }
 
   var gallery = []; // lightbox sequence
