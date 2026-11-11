@@ -591,12 +591,12 @@ html,body{overflow-x:clip}
      fr:"Une échelle, l’eau immobile, le bord du bassin. La scène attend quelqu’un.",en:"A ladder, still water, the edge of the pool. The scene is waiting for someone."}
   ];
   var HORS = [
-    {t:"Night in Burgas",y:2025,tech:"oil",h:50,w:70,img:"img/night-in-burgas.jpg"},
-    {t:"Les Récollets",y:2026,tech:"oil",h:50,w:40,img:"img/les-recollets.jpg",film:"img/recollets-film.jpg",
+    {t:"Night in Burgas",vis:"img/cadre-night-in-burgas.jpg",y:2025,tech:"oil",h:50,w:70,img:"img/night-in-burgas.jpg"},
+    {t:"Les Récollets",vis:"img/cadre-les-recollets.jpg",y:2026,tech:"oil",h:50,w:40,img:"img/les-recollets.jpg",film:"img/recollets-film.jpg",
      nfr:"Ardèche, d’après mes photos argentiques",nen:"Ardèche, painted from my film photos"},
-    {t:"Glass",y:2024,tech:"oil",h:30,w:25,img:"img/glass.jpg"},
-    {t:"Pomegranates and a lemon",y:2026,tech:"cb",h:24,w:29.5,img:"img/pomegranates.jpg"},
-    {t:"Flower and metal",y:2026,tech:"cb",h:24,w:18,img:"img/flower-and-metal.jpg"}
+    {t:"Glass",vis:"img/cadre-glass.jpg",y:2024,tech:"oil",h:30,w:25,img:"img/glass.jpg"},
+    {t:"Pomegranates and a lemon",vis:"img/cadre-pomegranates.jpg",y:2026,tech:"cb",h:24,w:29.5,img:"img/pomegranates.jpg"},
+    {t:"Flower and metal",vis:"img/cadre-flower-and-metal.jpg",y:2026,tech:"cb",h:24,w:18,img:"img/flower-and-metal.jpg"}
   ];
   var INTERIORS = [
     {img:"img/int-presence-4.jpg",fr:"Présence nº4",en:"Présence nº4"},
@@ -640,6 +640,7 @@ html,body{overflow-x:clip}
   function extras(o){ var x=[];
     if(o.det) x.push(add(o.det,{fr:o.t+" — "+L.fr.detail+" : "+o.dfr, en:o.t+" — "+L.en.detail+": "+o.den}));
     if(HEROMAP[o.t]) x.push(add("img/"+HEROMAP[o.t]+"-l.jpg",{fr:o.t+" — "+L.fr.detail, en:o.t+" — "+L.en.detail}));
+    if(o.vis) x.push(add(o.vis,{fr:o.t+" — visualisation encadrée (cadre non inclus)", en:o.t+" — framed visualisation (frame not included)"}));
     if(o.film) x.push(add(o.film,{fr:o.t+" — photo argentique du lieu, Ardèche", en:o.t+" — film photo of the place, Ardèche"}));
     return x.join(","); }
   function workBlock(o, parent, isPres){
