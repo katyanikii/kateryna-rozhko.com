@@ -118,6 +118,8 @@ h2{font-family:var(--display);font-weight:300;font-size:clamp(38px,6vw,64px);lin
 .cartel .note{color:var(--muted);max-width:44ch;margin:0}
 .avail{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.04em}
 .avail::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-right:8px;vertical-align:1px}
+.avail.sold{color:var(--muted,#8a857f)}
+.avail.sold::before{background:#b23a2a}
 .thumb{display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:center;margin-top:6px}
 .thumb img{width:96px;height:96px;object-fit:cover;cursor:zoom-in}
 .thumb span{font-size:14px;color:var(--muted)}
@@ -606,7 +608,9 @@ html,body{overflow-x:clip}
   ];
 
   var PRICE={"Présence nº1":550,"Présence nº2":700,"Présence nº3":400,"Présence nº4":500,"Présence nº5":500,"Koï":700,"Pool":350,"Sans titre":700,"Night in Burgas":540,"Les Récollets":450,"Glass":180,"Pomegranates and a lemon":150,"Flower and metal":120};
+  var SOLD={"Koï":1};
   function pr(t){ return PRICE[t] ? PRICE[t].toLocaleString("fr-BE")+" €" : ""; }
+  function av(t){ return SOLD[t] ? '<span class="avail sold">'+bi("Vendue","Sold")+'</span>' : null; }
   var lang = "fr";
   try{ var s = localStorage.getItem("kr-lang"); if(s==="en"||s==="fr") lang = s; }catch(e){}
   if(lang==="fr" && !/^fr/i.test(navigator.language||"") && /^en/i.test(navigator.language||"")){ /* keep FR as the site's first language */ }
@@ -658,7 +662,7 @@ html,body{overflow-x:clip}
       '<dt>'+bi(L.fr.tech,L.en.tech)+'</dt><dd>'+bi(L.fr[o.tech],L.en[o.tech])+'</dd>'+
       '<dt>'+bi(L.fr.size,L.en.size)+'</dt><dd>'+size(o)+'</dd></dl>'+
       '<p class="note">'+bi(o.fr,o.en)+'</p>'+
-      '<span class="avail">'+bi("Disponible","Available")+' · '+pr(o.t)+'</span>';
+      (av(o.t) || '<span class="avail">'+bi("Disponible","Available")+' · '+pr(o.t)+'</span>');
     cart.innerHTML = html;
     if(o.det){
       var di = add(o.det, {fr:o.t+" — "+L.fr.detail+" : "+o.dfr, en:o.t+" — "+L.en.detail+": "+o.den});
@@ -697,8 +701,9 @@ html,body{overflow-x:clip}
     var d = el("article",{class:"item"});
     d.innerHTML = '<div class="frame"><div class="in"><img src="'+o.img+'" alt="'+o.t+' — Kateryna Rozhko, '+L.fr[o.tech].toLowerCase()+', '+o.y+'" loading="lazy" data-i="'+i+'" data-x="'+extras(o)+'" tabindex="0"></div></div>'+
       '<h3>'+o.t+'</h3><div class="meta">'+o.y+' · '+bi(L.fr[o.tech],L.en[o.tech])+' · '+size(o)+'</div>'+(o.nfr?'<div class="meta">'+bi(o.nfr,o.nen)+'</div>':'')+
+      (SOLD[o.t] ? '<div class="row">'+av(o.t)+'</div>' :
       '<div class="row"><span class="avail">'+bi("Disponible","Available")+'</span><span class="price">'+pr(o.t)+'</span></div>'+
-      '<button type="button" class="ask" data-t="'+o.t+'">'+bi("Demander cette œuvre","Ask about this work")+'</button>';
+      '<button type="button" class="ask" data-t="'+o.t+'">'+bi("Demander cette œuvre","Ask about this work")+'</button>');
     tgt.appendChild(d);
   });
   // postcards
